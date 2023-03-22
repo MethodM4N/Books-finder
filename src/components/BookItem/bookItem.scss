@@ -1,0 +1,56 @@
+.bookItem-container {
+  margin: 0 0 40px;
+  padding: 30px 20px;
+  background-color: rgb(247, 247, 247);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  img {
+    margin: 0 auto 10px;
+    height: 280px;
+    max-width: 200px;
+    box-shadow: 8px 7px 7px rgb(189, 189, 189);
+  }
+
+  label {
+    height: 280px;
+    max-width: auto;
+    text-align: center;
+    justify-self: center;
+  }
+
+  p {
+    font-size: 0.8em;
+    text-decoration: underline;
+    color: rgb(143, 143, 143);
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  h1 {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 0.4;
+    }
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 1em;
+    font-weight: 300;
+    color: rgb(85, 85, 85);
+  }
+}

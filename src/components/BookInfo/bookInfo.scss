@@ -1,0 +1,80 @@
+.bookInfo-container {
+  margin: 0 0 20px;
+  padding: 30px 20px;
+  background-color: rgb(247, 247, 247);
+  display: flex;
+  gap: 40px;
+
+  img {
+    margin: 0 auto 10px;
+    height: auto;
+    width: 400px;
+    box-shadow: 8px 7px 7px rgb(189, 189, 189);
+  }
+
+  label {
+    height: 280px;
+    max-width: auto;
+    text-align: center;
+    justify-self: center;
+  }
+
+  p {
+    font-size: 0.8em;
+    text-decoration: underline;
+    color: rgb(143, 143, 143);
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 1em;
+    font-weight: 300;
+    color: rgb(85, 85, 85);
+
+    &:last-of-type {
+      padding: 10px 10px 70px;
+      border: 1px solid rgba(128, 128, 128, 0.459);
+      margin-top: 40px;
+      color: rgb(0, 0, 0);
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    display: flex;
+    width: 20%;
+    margin: 0 auto;
+  }
+
+  &__back-button {
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    padding: 11px 60px;
+    margin: 0 auto;
+    background-color: white;
+    width: 320px;
+    height: 36px;
+    border: solid 1px #aaaaaa;
+    border-radius: 5px;
+    color: #000000;
+    font-size: 12px;
+    line-height: 14.52px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.6;
+      transition: 0.5s ease;
+    }
+  }
+}

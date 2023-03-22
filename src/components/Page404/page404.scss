@@ -1,0 +1,39 @@
+.page404 {
+  margin: 0;
+  padding: 246px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__redirect-button {
+    padding: 10px 40px;
+    margin: 0 0 60px;
+    border: solid 1px #41b47e;
+    border-radius: 5px;
+    background-color: #ffffff;
+    text-decoration: none;
+    color: #51b17c;
+    font-size: 24px;
+    line-height: 16.94px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+
+  &__title {
+    margin: 0 0 20px;
+    padding: 0;
+    color: #000000;
+    font-size: 180px;
+    line-height: 169.43px;
+    font-weight: 400;
+  }
+
+  &__info {
+    margin: 0 0 100px;
+    padding: 0;
+    color: #a0a0a0;
+    font-size: 20px;
+    line-height: 19.36px;
+    font-weight: 400;
+  }
+}
