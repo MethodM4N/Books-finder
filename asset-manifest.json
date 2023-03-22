@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "./static/css/main.56d556b1.css",
-    "main.js": "./static/js/main.ae7df4ba.js",
+    "main.js": "./static/js/main.abf00987.js",
     "static/media/above-view-books-arrangement.jpg": "./static/media/above-view-books-arrangement.80cef8bb52d344b573e9.jpg",
     "static/media/Book_25711.ico": "./static/media/Book_25711.5120dc39fe11969a5e8c.ico",
     "static/media/magnifier-svgrepo-com.svg": "./static/media/magnifier-svgrepo-com.1b2afd8f45bf967b664016f68ed94506.svg",
     "index.html": "./index.html",
     "main.56d556b1.css.map": "./static/css/main.56d556b1.css.map",
-    "main.ae7df4ba.js.map": "./static/js/main.ae7df4ba.js.map"
+    "main.abf00987.js.map": "./static/js/main.abf00987.js.map"
   },
   "entrypoints": [
     "static/css/main.56d556b1.css",
-    "static/js/main.ae7df4ba.js"
+    "static/js/main.abf00987.js"
   ]
 }
