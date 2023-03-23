@@ -2,7 +2,7 @@
 
 ## Ссылка на Github Pages
 
-Отсутствует
+https://methodm4n.github.io/Books-finder/
 
 ## Функциональные особенности
 
