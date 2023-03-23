@@ -14,7 +14,7 @@ const BookItem: React.FC<TBook> = ({ volumeInfo, id }) => {
           <label>Изображение отсутствует</label>
         )}
         <p>{volumeInfo.categories ? volumeInfo.categories : ''}</p>
-        <h4>{volumeInfo.publishedDate ? volumeInfo.publishedDate : ''}</h4>
+        <h4>{volumeInfo.publishedDate ? volumeInfo.publishedDate.substr(0, 4) : ''}</h4>
         <Link to={`/book/${id}`}>
           <h1>{volumeInfo.title ? volumeInfo.title : ''}</h1>
         </Link>

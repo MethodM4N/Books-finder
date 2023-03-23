@@ -43,7 +43,7 @@ const BookInfo: React.FC = observer(() => {
         </div>
         <div>
           <p>{book?.categories ? book.categories : 'Категория отсутствует'}</p>
-          <h4>{book?.publishedDate ? book.publishedDate : ''}</h4>
+          <h4>{book?.publishedDate ? book.publishedDate.substr(0, 4) : ''}</h4>
           <h1>{book?.title ? book.title : ''}</h1>
           <h4>{book?.authors ? book.authors : 'Информация о авторах отсутствует'}</h4>
           <h4>{book?.description ? book.description : 'Описание отсутствует'}</h4>
