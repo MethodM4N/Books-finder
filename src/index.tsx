@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 // need to change BrowserRouter to HashRouter for gh-pages
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import Favicon from 'react-favicon';
 import favicon from './img/Book_25711.ico';
 

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { observer } from 'mobx-react-lite';
 import SearchIco from '../../img/magnifier-svgrepo-com.svg';
 
-import './header.scss';
+import { observer } from 'mobx-react-lite';
 import searchSlice from '../../store/filterSlice';
+
+import './header.scss';
 
 const category = ['All', 'Art', 'Biography', 'Computers', 'History', 'Medicine', 'Poetry'];
 const sort = ['Relevance', 'Newest'];
@@ -11,17 +12,17 @@ const sort = ['Relevance', 'Newest'];
 const Header: React.FC = observer(() => {
   const [localSearchValue, setLocalSearchValue] = useState<string>('');
 
-  function handleSearchContent(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleSearchContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLocalSearchValue(e.target.value);
-  }
+  };
 
-  function handleSubmit(e: { preventDefault: () => void }) {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     searchSlice.setSearchValue(localSearchValue);
     searchSlice.setCategoryValue('All');
     searchSlice.setSortValue('Relevance');
     setLocalSearchValue('');
-  }
+  };
 
   const onCategoryChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
     searchSlice.setCategoryValue(event.target.value);

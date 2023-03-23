@@ -1,4 +1,4 @@
-import { IBooks, TBook, TVolumeInfo } from '../types/types';
+import { IBooks, TBook } from '../types/types';
 
 const apiKey = 'AIzaSyCAA-lIye0CJ8WoBfyN1M7NpYVJTvOdmm0';
 

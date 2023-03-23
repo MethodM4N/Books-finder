@@ -1,8 +1,9 @@
-import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { fetchBookById } from '../../api/booksApi';
 import { TVolumeInfo } from '../../types/types';
+
+import { observer } from 'mobx-react-lite';
 import searchSlice from '../../store/filterSlice';
 
 import './bookInfo.scss';

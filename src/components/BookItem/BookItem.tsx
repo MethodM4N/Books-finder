@@ -1,8 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { TBook } from '../../types/types';
 
 import './bookItem.scss';
-import { TBook } from '../../types/types';
-import { Link } from 'react-router-dom';
 
 const BookItem: React.FC<TBook> = ({ volumeInfo, id }) => {
   return (
