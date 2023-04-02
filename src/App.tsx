@@ -49,6 +49,9 @@ const App: React.FC = observer(() => {
 
   return (
     <div className="App">
+      <button className="App__api-button" onClick={handleMoreButton}>
+        Api Key
+      </button>
       <Header />
       {booksSlice.apiStatus == 'success' && booksSlice.totalBooks > 0 && (
         <p className="App__find-value">

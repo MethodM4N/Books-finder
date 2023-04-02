@@ -30,7 +30,6 @@ class booksSlice {
       })
       .catch((e) => {
         this.apiStatus = Status.ERROR;
-        return e;
       });
   }
 
@@ -49,7 +48,6 @@ class booksSlice {
       })
       .catch((e) => {
         this.apiStatus = Status.ERROR;
-        return e;
       });
   }
 
@@ -64,7 +62,6 @@ class booksSlice {
       })
       .catch((e) => {
         this.apiStatus = Status.ERROR;
-        return e;
       })
       .finally(() => {
         if (sort === 'Newest') {

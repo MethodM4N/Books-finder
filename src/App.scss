@@ -10,6 +10,32 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  position: relative;
+
+  &__api-button {
+    display: flex;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 0 auto;
+    background-color: rgb(223, 215, 215);
+    height: 50px;
+    border: solid 1px #594f7c;
+    border-radius: 5px;
+    color: #000000;
+    font-size: 12px;
+    line-height: 14.52px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.6;
+      transition: 0.5s ease;
+    }
+  }
 
   &__more-button {
     display: flex;

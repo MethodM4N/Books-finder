@@ -1,5 +1,5 @@
 import { IBooks, TBook } from '../types/types';
-
+// AIzaSyCAA-lIye0CJ8WoBfyN1M7NpYVJTvOdmm0
 const apiKey = 'AIzaSyCAA-lIye0CJ8WoBfyN1M7NpYVJTvOdmm0';
 
 export const fetchBooks = async (
@@ -15,7 +15,7 @@ q=${searchValue}
 &startIndex=${startIndex}
 `,
   ).then((res) => {
-    return res.json();
+    return getResponseData(res);
   });
 };
 
@@ -24,3 +24,10 @@ export const fetchBookById = async (id: string): Promise<TBook> => {
     return res.json();
   });
 };
+
+function getResponseData(res: any) {
+  if (res.ok) {
+    return res.json();
+  }
+  return res.json().then(() => Promise.reject({ status: res.status, message: res.statusText }));
+}
