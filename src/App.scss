@@ -14,7 +14,7 @@ body {
 
   &__api-button {
     display: flex;
-    position: fixed;
+    position: absolute;
     top: 20px;
     right: 20px;
     justify-self: center;
@@ -29,6 +29,7 @@ body {
     color: #000000;
     font-size: 12px;
     line-height: 14.52px;
+    z-index: 2;
     cursor: pointer;
 
     &:hover {

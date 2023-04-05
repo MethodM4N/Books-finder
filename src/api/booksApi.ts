@@ -1,8 +1,7 @@
 import { IBooks, TBook } from '../types/types';
-// AIzaSyCAA-lIye0CJ8WoBfyN1M7NpYVJTvOdmm0
-const apiKey = 'AIzaSyCAA-lIye0CJ8WoBfyN1M7NpYVJTvOdmm0';
 
 export const fetchBooks = async (
+  apiKey: string,
   searchValue: string,
   startIndex = 0,
   maxResult = 10,
@@ -21,7 +20,7 @@ q=${searchValue}
 
 export const fetchBookById = async (id: string): Promise<TBook> => {
   return fetch(`https://www.googleapis.com/books/v1/volumes/${id}`).then((res) => {
-    return res.json();
+    return getResponseData(res);
   });
 };
 

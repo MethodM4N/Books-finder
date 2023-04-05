@@ -1,6 +1,7 @@
-import { makeAutoObservable } from 'mobx';
+import { action, makeAutoObservable } from 'mobx';
 import { fetchBooks } from '../api/booksApi';
 import { TBook } from '../types/types';
+import { totalmem } from 'os';
 
 export enum Status {
   LOADING = 'loading',
@@ -11,6 +12,7 @@ export enum Status {
 class booksSlice {
   books: TBook[] = [];
   totalBooks = 0;
+  apiKey = '';
   apiStatus = Status.LOADING;
 
   constructor() {
@@ -19,50 +21,68 @@ class booksSlice {
 
   getInitialBooks(search: string) {
     this.apiStatus = Status.LOADING;
-    fetchBooks(search)
-      .then((books) => {
-        this.books = [];
-        this.books = books.items;
-        this.totalBooks = books.totalItems;
-      })
-      .then(() => {
-        this.apiStatus = Status.SUCCESS;
-      })
-      .catch((e) => {
-        this.apiStatus = Status.ERROR;
-      });
+    this.books = [];
+    fetchBooks(this.apiKey, search)
+      .then(
+        action((books) => {
+          this.totalBooks = books.totalItems;
+          this.books = books.items;
+        }),
+      )
+      .then(
+        action(() => {
+          this.apiStatus = Status.SUCCESS;
+        }),
+      )
+      .catch(
+        action(() => {
+          this.apiStatus = Status.ERROR;
+        }),
+      );
   }
 
   getBooks(search: string) {
     this.apiStatus = Status.LOADING;
     const maxResult = this.books.length < 10 ? 10 : this.books.length < 40 ? this.books.length : 40;
 
-    fetchBooks(search, 0, maxResult)
-      .then((books) => {
-        this.books = [];
-        this.books = books.items;
-        this.totalBooks = books.totalItems;
-      })
-      .then(() => {
-        this.apiStatus = Status.SUCCESS;
-      })
-      .catch((e) => {
-        this.apiStatus = Status.ERROR;
-      });
+    fetchBooks(this.apiKey, search, 0, maxResult)
+      .then(
+        action((books) => {
+          this.books = [];
+          this.books = books.items;
+          this.totalBooks = books.totalItems;
+        }),
+      )
+      .then(
+        action(() => {
+          this.apiStatus = Status.SUCCESS;
+        }),
+      )
+      .catch(
+        action(() => {
+          this.apiStatus = Status.ERROR;
+        }),
+      );
   }
 
   getMoreBooks(search: string, startIndex: number, sort: string, category: string) {
     this.apiStatus = Status.LOADING;
-    fetchBooks(search, startIndex, 30)
-      .then((books) => {
-        this.books = [...this.books, ...books.items];
-      })
-      .then(() => {
-        this.apiStatus = Status.SUCCESS;
-      })
-      .catch((e) => {
-        this.apiStatus = Status.ERROR;
-      })
+    fetchBooks(this.apiKey, search, startIndex, 30)
+      .then(
+        action((books) => {
+          this.books = [...this.books, ...books.items];
+        }),
+      )
+      .then(
+        action(() => {
+          this.apiStatus = Status.SUCCESS;
+        }),
+      )
+      .catch(
+        action(() => {
+          this.apiStatus = Status.ERROR;
+        }),
+      )
       .finally(() => {
         if (sort === 'Newest') {
           this.sortBooks();
@@ -106,6 +126,10 @@ class booksSlice {
 
     this.books = sortedBooks;
     this.totalBooks = sortedBooks.length;
+  }
+
+  setApiKey(apiKey: string) {
+    this.apiKey = apiKey;
   }
 }
 

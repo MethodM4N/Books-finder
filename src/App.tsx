@@ -8,13 +8,18 @@ import BookItem from './components/BookItem/BookItem';
 import Header from './components/Header/Header';
 import searchSlice from './store/filterSlice';
 import Skeleton from './components/UI/Skeleton';
+import Popup from './components/Popup/Popup';
+import { getLocalStorageApiKey } from './utils/getLocalStorageApiKey';
 
 const App: React.FC = observer(() => {
   const [startIndex, setStartIndex] = useState(10);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const apiButton = useRef<HTMLButtonElement>(null);
   const skeletonArray = [...new Array(10)];
   const search = searchSlice.searchValue ? searchSlice.searchValue : `JS`;
   const sort = searchSlice.sortValue;
   const category = searchSlice.categoryValue;
+  const apiKey = booksSlice.apiKey;
   const firstMount = useRef(true);
 
   const handleMoreButton = () => {
@@ -23,6 +28,7 @@ const App: React.FC = observer(() => {
   };
 
   useEffect(() => {
+    booksSlice.setApiKey(getLocalStorageApiKey());
     if (!firstMount.current) {
       if (category !== 'All') {
         booksSlice.sortBooksByCategory(category);
@@ -30,7 +36,7 @@ const App: React.FC = observer(() => {
         booksSlice.getBooks(search);
       }
     }
-  }, [category]);
+  }, [category, apiKey]);
 
   useEffect(() => {
     setStartIndex(10);
@@ -40,19 +46,22 @@ const App: React.FC = observer(() => {
   }, [search]);
 
   useEffect(() => {
-    if (sort === 'Newest') {
-      booksSlice.sortBooks();
-    } else {
-      booksSlice.getBooks(search);
+    if (!firstMount.current) {
+      if (sort === 'Newest') {
+        booksSlice.sortBooks();
+      } else {
+        booksSlice.getBooks(search);
+      }
     }
   }, [sort]);
 
   return (
     <div className="App">
-      <button className="App__api-button" onClick={handleMoreButton}>
+      <Popup isOpen={popupOpen} onClose={() => setPopupOpen(false)} apiButton={apiButton} />
+      <Header />
+      <button ref={apiButton} className="App__api-button" onClick={() => setPopupOpen(true)}>
         Api Key
       </button>
-      <Header />
       {booksSlice.apiStatus == 'success' && booksSlice.totalBooks > 0 && (
         <p className="App__find-value">
           По запросу <span>"{search}"</span> найдено книг: {booksSlice.totalBooks} шт
@@ -62,9 +71,7 @@ const App: React.FC = observer(() => {
         {booksSlice.apiStatus == 'error' ? (
           <div>
             <h1>Произошла непредвиденная ошибка.</h1>
-            <label>
-              Мы уже занимаемся этим вопросом, попробуйте повторить попытку немного позднее.
-            </label>
+            <label>Попробуйте сверить Api Key или повторить попытку немного позднее.</label>
           </div>
         ) : booksSlice.totalBooks > 0 ? (
           booksSlice.books.map((obj) => <BookItem key={obj.id} {...obj} />)
