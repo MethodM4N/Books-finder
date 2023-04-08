@@ -1,7 +1,6 @@
 import { action, makeAutoObservable } from 'mobx';
 import { fetchBooks } from '../api/booksApi';
 import { TBook } from '../types/types';
-import { totalmem } from 'os';
 
 export enum Status {
   LOADING = 'loading',

@@ -14,7 +14,6 @@ import { getLocalStorageApiKey } from './utils/getLocalStorageApiKey';
 const App: React.FC = observer(() => {
   const [startIndex, setStartIndex] = useState(10);
   const [popupOpen, setPopupOpen] = useState(false);
-  const apiButton = useRef<HTMLButtonElement>(null);
   const skeletonArray = [...new Array(10)];
   const search = searchSlice.searchValue ? searchSlice.searchValue : `JS`;
   const sort = searchSlice.sortValue;
@@ -57,9 +56,9 @@ const App: React.FC = observer(() => {
 
   return (
     <div className="App">
-      <Popup isOpen={popupOpen} onClose={() => setPopupOpen(false)} apiButton={apiButton} />
+      <Popup isOpen={popupOpen} onClose={() => setPopupOpen(false)} />
       <Header />
-      <button ref={apiButton} className="App__api-button" onClick={() => setPopupOpen(true)}>
+      <button className="App__api-button" onClick={() => setPopupOpen(true)}>
         Api Key
       </button>
       {booksSlice.apiStatus == 'success' && booksSlice.totalBooks > 0 && (

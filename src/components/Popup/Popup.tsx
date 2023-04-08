@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import './popup.scss';
@@ -12,16 +12,9 @@ type TFormValues = {
 type TChildrenProp = {
   isOpen: boolean;
   onClose: () => void;
-  apiButton: any;
 };
 
-type PopupClick = MouseEvent & {
-  path: Node[];
-};
-
-const Popup: React.FC<TChildrenProp> = observer(({ isOpen, onClose, apiButton }) => {
-  const popup = useRef<HTMLDivElement>(null);
-
+const Popup: React.FC<TChildrenProp> = observer(({ isOpen, onClose }) => {
   const {
     register,
     getValues,
@@ -48,32 +41,20 @@ const Popup: React.FC<TChildrenProp> = observer(({ isOpen, onClose, apiButton })
   }, [isOpen]);
 
   useEffect(() => {
-    const closePopup = (event: MouseEvent) => {
-      const _event = event as PopupClick;
-
-      if (
-        popup.current &&
-        !_event.composedPath().includes(popup.current) &&
-        !_event.composedPath().includes(apiButton.current)
-      ) {
-        onClose();
-      }
-    };
-
-    if (isOpen) {
-      document.body.addEventListener('click', closePopup);
-    }
-
-    return () => document.body.removeEventListener('click', closePopup);
-  }, [isOpen]);
-
-  useEffect(() => {
     setValue('apiKey', booksSlice.apiKey);
   }, [booksSlice.apiKey]);
 
   return (
-    <div className={`popup ${isOpen ? 'popup_open' : ''}`}>
-      <div className="popup__container" ref={popup}>
+    <div
+      className={`popup ${isOpen ? 'popup_open' : ''}`}
+      onClick={() => {
+        onClose();
+      }}>
+      <div
+        className="popup__container"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}>
         <div className="popup__flex">
           <h2 className="popup__title">Google Books Api Key</h2>
           <button className="popup__close-button" type="button" onClick={onClose}>
